@@ -39,4 +39,10 @@ class HomeScreen extends StatelessWidget {
       {required bool add, required int index, required journal}) {}
 }
 
-class Journal {}
+class Journal {
+  static fromJson(x) {
+    
+  }
+
+  toJson() {}
+}
