@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:journalapp/screens/home_screen.dart';
+import 'package:journalapp/screens/home/home_screen.dart';
 import 'package:journalapp/utils/colors.dart';
 
 void main() {
