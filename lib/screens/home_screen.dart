@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:journalapp/data/journal.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +10,6 @@ class HomeScreen extends StatelessWidget {
       body: FutureBuilder(
         initialData: const [],
         future: _loadJournals(),
-    
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return !snapshot.hasData
               ? const Center(child: CircularProgressIndicator())
@@ -23,7 +23,10 @@ class HomeScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          _addOrEditJournal(add: true, index: -1, journal: Journal());
+          _addOrEditJournal(
+              add: true,
+              index: -1,
+              journal: Journal(id: "", date: "", mood: "", note: ""));
         },
         tooltip: 'Add Journal Entry',
         child: const Icon(Icons.add),
@@ -39,10 +42,4 @@ class HomeScreen extends StatelessWidget {
       {required bool add, required int index, required journal}) {}
 }
 
-class Journal {
-  static fromJson(x) {
-    
-  }
 
-  toJson() {}
-}

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:journalapp/screens/home_screen.dart';
+import 'package:journalapp/data/database.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseFileRoutines {
@@ -53,19 +53,4 @@ class DatabaseFileRoutines {
     final dataToJson = data.toJson();
     return json.encode(dataToJson);
   }
-}
-
-class Database {
- List<Journal> journal;
- Database({
- required this.journal,
- });
- factory Database.fromJson(Map<String, dynamic> json) => Database(
- journal: List<Journal>.from(json["journals"].map((x) => Journal.fromJson(x))),
- );
- Map<String, dynamic> toJson() => {
- "journals": List<dynamic>.from(journal.map((x) => x.toJson())),
- };
-
- 
 }
