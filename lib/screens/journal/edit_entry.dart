@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:journalapp/data/journal.dart';
 import 'package:journalapp/data/journal_edit.dart';
 
 class EditEntry extends StatefulWidget {
@@ -124,7 +127,47 @@ class _EditEntryState extends State<EditEntry> {
               FocusScope.of(context).requestFocus(_noteFocus);
             },
           ),
-          TextField()
+          TextField(
+            controller: _noteController,
+            textInputAction: TextInputAction.newline,
+            focusNode: _noteFocus,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: const InputDecoration(
+              labelText: 'Note',
+              icon: Icon(Icons.subject),
+            ),
+            maxLines: null,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    _journalEdit.action = 'Cancel';
+                    Navigator.pop(context, _journalEdit);
+                  },
+                  child: const Text('Cancel'))
+            ],
+          ),
+          const SizedBox(
+            width: 8.0,
+          ),
+          TextButton(
+              onPressed: () {
+                _journalEdit.action = 'Save';
+                String id = widget.add
+                    ? Random().nextInt(9999999).toString()
+                    : _journalEdit.journal.id;
+
+                _journalEdit.journal = Journal(
+                    id: id,
+                    date: _selectedDate.toString(),
+                    mood: _moodController.text,
+                    note: _noteController.text);
+
+                Navigator.pop(context, _journalEdit);
+              },
+              child: const Text('Save'))
         ]),
       )),
     );
