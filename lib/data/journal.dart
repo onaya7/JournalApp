@@ -24,3 +24,5 @@ class Journal {
         "note": note,
       };
 }
+
+
