@@ -30,6 +30,7 @@ class DatabaseFileRoutines {
 
       // read the file
       String contents = await file.readAsString();
+      print(contents);
       return contents;
     } catch (e) {
       print("error readJournals: $e");
