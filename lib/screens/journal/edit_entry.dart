@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:journalapp/data/journal_edit.dart';
 
 class EditEntry extends StatefulWidget {
@@ -75,10 +76,57 @@ class _EditEntryState extends State<EditEntry> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text(
-       '$_title Entry',),
-       automaticallyImplyLeading: false),
-       body: SafeArea(child: ),
+      appBar: AppBar(
+          title: Text(
+            '$_title Entry',
+          ),
+          automaticallyImplyLeading: false),
+      body: SafeArea(
+          child: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(children: <Widget>[
+          TextButton(
+              onPressed: () async {
+                FocusScope.of(context).requestFocus(FocusNode());
+                DateTime pickerDate = await _selectDate(_selectedDate);
+                setState(() {
+                  _selectedDate = pickerDate;
+                });
+              },
+              child: Row(
+                children: <Widget>[
+                  const Icon(
+                    Icons.calendar_today,
+                    size: 22.0,
+                    color: Colors.black54,
+                  ),
+                  const SizedBox(width: 16.0),
+                  Text(
+                    DateFormat.yMMMEd().format(_selectedDate),
+                    style: const TextStyle(
+                        color: Colors.black54, fontWeight: FontWeight.bold),
+                  ),
+                  const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black54,
+                  )
+                ],
+              )),
+          TextField(
+            controller: _moodController,
+            autofocus: true,
+            textInputAction: TextInputAction.next,
+            focusNode: _moodFocus,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+                labelText: 'Mood', icon: Icon(Icons.mood)),
+            onSubmitted: (submitted) {
+              FocusScope.of(context).requestFocus(_noteFocus);
+            },
+          ),
+          TextField()
+        ]),
+      )),
     );
   }
 }
