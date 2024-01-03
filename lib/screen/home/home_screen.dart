@@ -88,9 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           child: ListTile(
             leading: Column(
-              
               children: <Widget>[
-                
                 Text(
                   DateFormat.d()
                       .format(DateTime.parse(snapshot.data[index].date)),
@@ -151,7 +149,10 @@ class _HomeScreenState extends State<HomeScreen> {
         future: _loadJournals(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return !snapshot.hasData
-              ? const Center(child: CircularProgressIndicator())
+              ? const Center(
+                  child: CircularProgressIndicator(
+                  color: primary,
+                ))
               : _buildListViewSeparated(snapshot);
         },
       ),
@@ -161,6 +162,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: primary,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50))),
         onPressed: () async {
           _addOrEditJournal(
               add: true,
@@ -168,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
               journal: Journal(id: "", date: "", mood: "", note: ""));
         },
         tooltip: 'Add Journal Entry',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white,)
       ),
     );
   }
