@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:journalapp/screens/home/home_screen.dart';
+import 'package:journalapp/screen/home/home_screen.dart';
 import 'package:journalapp/utils/colors.dart';
 
 void main() {
@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       title: 'Local Persistence',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        
         primarySwatch: primary,
         useMaterial3: true,
         bottomAppBarTheme: const BottomAppBarTheme(color: primary),

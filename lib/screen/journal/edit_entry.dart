@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:journalapp/data/journal.dart';
 import 'package:journalapp/data/journal_edit.dart';
+import 'package:journalapp/utils/colors.dart';
 
 class EditEntry extends StatefulWidget {
   final bool add;
@@ -80,8 +81,13 @@ class _EditEntryState extends State<EditEntry> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: primary,
           title: Text(
             '$_title Entry',
+            style: const TextStyle(
+              color: Colors.white,
+            ),
           ),
           automaticallyImplyLeading: false),
       body: SafeArea(

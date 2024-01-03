@@ -45,13 +45,13 @@ class DatabaseFileRoutines {
   }
 
   // method to read and parse from json data
-  Database datebaseFromJson(String str) {
+  static Database datebaseFromJson(String str) {
     final dataFromJson = json.decode(str);
     return Database.fromJson(dataFromJson);
   }
 
   // method to save and parse to json data
-  String databaseToJson(Database data) {
+  static String databaseToJson(Database data) {
     final dataToJson = data.toJson();
     return json.encode(dataToJson);
   }
